@@ -1,0 +1,27 @@
+<div class="generator-container">
+  <h2> Smart Template Generator</h2>
+  <p class="subtitle">Experimenting with dynamic templates and clean UI</p>
+
+  <div class="controls">
+    <select [(ngModel)]="selectedTemplate" class="dropdown">
+      <option value="">Select Template Type</option>
+      <option *ngFor="let t of templates" [ngValue]="t">{{ t.name }}</option>
+    </select>
+
+    <button class="generate-btn" (click)="generateTemplate()">Generate Template</button>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-section">
+    <div class="loader"></div>
+    <p>Generating your design...</p>
+  </div>
+
+  <div *ngIf="generatedLayout && !isLoading" class="template-card" [style.background]="generatedLayout.background">
+    <div class="icon-wrapper">
+      <lucide-icon [name]="generatedLayout.icon" class="template-icon"></lucide-icon>
+    </div>
+    <h3>{{ generatedLayout.name }}</h3>
+    <p>{{ generatedLayout.description }}</p>
+    <button class="preview-btn">Preview</button>
+  </div>
+</div>
